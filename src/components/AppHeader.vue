@@ -3,7 +3,7 @@
   <nav class="navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+      <img src="../assets/styles/spotify.png" alt="" width="30" height="24">
     </a>
   </div>
 </nav>
@@ -22,7 +22,13 @@ export default {
 @import "@/assets/styles/general.scss";
 
 nav{
+  height: 80px;
   background-color: $nav-color;
 }
+img{
+  width: 60px;
+  height: 50px;
+}
+
 
 </style>

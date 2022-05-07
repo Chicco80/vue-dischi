@@ -24,11 +24,16 @@ export default {
     AppMain,
     AppGrid,
   }
+
 }
 </script>
 
 
 <style lang="scss">
 @import "@/assets/styles/general.scss";
+  main{
+    height: calc(100vh - 80px);
+    padding-top: 100px;
+}
 
 </style>

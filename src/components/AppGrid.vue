@@ -1,11 +1,5 @@
 <template>
     <section class="container">
-        
-        <!-- <AppLoader/> -->
-        <!-- <div v-for="item in musicList" :key="item.index">
-            autore {{item.author}} - {{item.genre}} - {{item.title}} - {{item.year}}
-            <img :src="item.poster" alt="">
-        </div>  -->
         <div class="row">
             <div v-for="album in musicList" :key="album.index" class="col">
                 <app-card :item="album"/>
