@@ -1,5 +1,9 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 
+@import "./vars.scss";
 
-@import "./vars.scss"
+body{
+    background-color: $bg-color;
+}
+
