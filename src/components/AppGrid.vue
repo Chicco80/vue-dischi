@@ -1,44 +1,68 @@
 <template>
     <section class="container">
+        <AppSearch :listGenre="genre" @search="filteredMusicList($event)"/>
         <div class="row">
             <div v-for="album in musicList" :key="album.index" class="col">
                 <app-card :item="album"/>
             </div>
-        </div>
+        </div> 
     </section>
 </template>
 
 <script>
 import axios from 'axios'
-// import AppLoader from './AppLoader.vue'
+//import AppLoader from './AppLoader.vue'
 import AppCard from './AppCard.vue'
+import AppSearch from './AppSearch.vue'
 export default {
     name: 'AppGrid',
     components: {
-    //     AppLoader
-    AppCard
+    //AppLoader,
+    AppCard,
+    AppSearch,
+    
     },
     data(){
         return{
             musicList:[],
+            genre:[],
+            searchText:'',
             apiPath:'https://flynn.boolean.careers/exercises/api/array/',
-            loading:false,
+            //loading:false,
         }
     },
+    computed:{
+        filteredMusicList(){
+            if(this.musicList === ""){
+                return this.musicList;
+            }
+            return this.musicList.filter((item)=>{
+                return item.genre === this.searchText
+                
+            })
+            
+        }
+    },
+    
     mounted(){
         // this.loading=true;
         axios.get(this.apiPath + 'music').then((res)=>{
             // console.log(res);
             this.musicList = res.data.response
-            console.log(res.data.response)
+            this.musicList.forEach((el)=>{
+                if(!this.genre.includes(el.genre)){
+                    this.genre.push(el.genre);
+                }
+            });
+            //console.log(res.data.response)
             // this.loading=false;
         }).catch((error)=>{
             console.log(error)
             // this.loading=false;
         })
-        
+
     },
-}
+ }
 </script>
 
 <style lang="scss" scoped>
