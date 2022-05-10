@@ -1,8 +1,8 @@
 <template>
 <div>
-    <select name="genre" id="genre" class="my-5" v-model="inputText" @change="search">
+    <select name="genre" id="genre" class="my-5" v-model="inputText" @change="goSearch">
         <option value="">All</option>
-        <option value="genere" v-for="genere in listGenre" :key="genere.index">{{genere}}</option>
+        <option :value="genere" v-for="(genere, index) in listGenre" :key="index">{{genere}}</option>
         
     </select>
 </div>
@@ -19,9 +19,11 @@ export default {
     },
     props:['listGenre'],
     methods:{
-        search(){
-            this.$emit("okSearch", this.inputText);
+        goSearch(){
+            this.$emit("performSearch", this.inputText);
+            console.log(this.inputText)
             this.inputText ="";
+            
             
         }
     }

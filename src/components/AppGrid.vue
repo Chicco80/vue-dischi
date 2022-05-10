@@ -1,8 +1,8 @@
 <template>
     <section class="container">
-        <AppSearch :listGenre="genre" @search="filteredMusicList($event)"/>
+        <AppSearch @performSearch="mySearch" :listGenre="genre"/>
         <div class="row">
-            <div v-for="album in musicList" :key="album.index" class="col">
+            <div v-for="album in filteredmusicList" :key="album.index" class="col">
                 <app-card :item="album"/>
             </div>
         </div> 
@@ -24,26 +24,31 @@ export default {
     },
     data(){
         return{
+            apiPath:'https://flynn.boolean.careers/exercises/api/array/',
             musicList:[],
             genre:[],
             searchText:'',
-            apiPath:'https://flynn.boolean.careers/exercises/api/array/',
+            
             //loading:false,
+        }
+        
+    },
+    methods:{
+        mySearch(text){
+            this.searchText = text;
         }
     },
     computed:{
-        filteredMusicList(){
-            if(this.musicList === ""){
+        filteredmusicList(){
+            if(this.searchText === ""){
                 return this.musicList;
             }
             return this.musicList.filter((item)=>{
                 return item.genre === this.searchText
                 
-            })
-            
+            });
         }
     },
-    
     mounted(){
         // this.loading=true;
         axios.get(this.apiPath + 'music').then((res)=>{
